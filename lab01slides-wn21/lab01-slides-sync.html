@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>STATS 250 Lab 01</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Nick Seewald   nseewald+250@umich.edu" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="extras.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STATS 250 Lab 01
+## Getting Started with R
+### Nick Seewald <br> nseewald+250@umich.edu
+### Say hi in the chat!
+### Week of 1/25/2021
+
+---
+
+class: center
+
+
+
+
+
+
+# Who am I? 👨‍🏫
+
+.pull-left[&lt;img src="images/stats-logo.png" style="width:75%;"&gt;
+
+&lt;img src="images/grad-students.gif" style="width:75%;"&gt;
+
+&lt;!-- &lt;img src="images/duolingo.png" style="width: 60%;"&gt; --&gt;
+]
+
+.pull-right[
+&lt;img src="images/ND-monogram.png" style="width:40%; align:center;"&gt;
+
+&lt;img src="images/map.jpg" style="width:40%;"&gt;
+]
+
+---
+# Who are you? 👩‍🎓
+
+** While you are taking this class, you are a statistician! **
+
+1. Change your Zoom name to include pronouns    
+  - Right-click (or long press) your name in the Participants list, select "Rename"
+  
+1. Add a photo to your Zoom profile
+  - Go to umich.zoom.us, sign in, and choose "Profile" on the left
+  - This will be used across all your U-M Zoom meetings
+  
+1. In the chat, type your favorite TV show **but don't hit enter it until I say go**.
+
+---
+
+# Course Policy
+
+## Lab attendance
+- It's expected that you attend these syncrhonous lab sessions and participate in the collaborative breakout sessions. 
+  - Please do not leave when breakout rooms open! 
+- If you can't make it to a syncrhonous session in a particular week, you *must* email me to get asynchronous materials. 
+
+---
+
+# Course Policy
+
+## How to contact me
+- Email me! The best address to do this is **[nseewald+250@umich.edu](mailto:nseewald+250@umich.edu)**
+  - Make sure you put "STATS 250" in the subject line
+  - If you don't put "STATS 250" in the subject OR email [nseewald+250@umich.edu](mailto:nseewald+250@umich.edu), *your email might get lost*.
+  
+- I will try to respond to all emails within 24 hours
+  - Generally my email hours are 9a - 7p ET on weekdays
+  
+---
+# Course Policy
+
+.pull-left[
+## Office Hours
+- You can attend anybody's office hours you want!
+  - Full schedule on Canvas
+- Completely remote via Zoom (links on Canvas)
+- I cannot confirm/deny whether your answers are "right"
+]
+.pull-right[
+## My office hours:
+&lt;table style="font-size:20pt;"&gt;
+  &lt;tr style="text-align:center;"&gt;
+    &lt;td&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;strong&gt;Time (ET)&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr style="color:var(--primary);"&gt;
+    &lt;td&gt;Tuesday&lt;/td&gt;
+    &lt;td&gt;9:00a - 10:00a&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Wednesday&lt;/td&gt;
+    &lt;td&gt;11:00a - 12:00p&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr style="color:var(--primary);"&gt; 
+    &lt;td&gt;Thursday&lt;/td&gt;
+    &lt;td&gt;5:30p - 7:00p&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Friday&lt;/td&gt;
+    &lt;td&gt;9:30a - 10:30a&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+]
+
+---
+# Lab Rules and Responsibilities
+
+.pull-left[
+## 1. Be Respectful.
+- Come to synchronous sessions! Notify me of conflicts in advance.
+- Treat your classmates with dignity and *learn from your differences*
+- Respect yourself: *come here to learn*
+]
+
+--
+
+.pull-right[
+## 2. Actively Collaborate.
+- Lab activities will involve working with your peers: you should participate and learn from each other.
+- The time will pass faster if you're having conversations and working together!
+]
+
+---
+# Health and Well-Being
+
+College is hard (especially now). **Your health and well-being are more important than this class.**
+
+If you're struggling with mental health, there are resources available to you at [wellbeing.studentlife.umich.edu](https://wellbeing.studentlife.umich.edu). 
+
+CAPS: [caps.umich.edu](https://caps.umich.edu) or 734.764.8312
+
+*If you become ill, please report the illness to LSA: https://webapps.lsa.umich.edu/SAA/UGStuAdv/App/Illness/RptIll.aspx*
+
+**Let me know what's going on and I'll do my best to help.**
+
+---
+
+# Diversity, Equity, and Inclusion
+
+It's important to me to cultivate a learning environment in which everyone's identities (race, ethnicity, gender, sexual orientation, religion, etc.) are respected. To this end:
+- If you feel that your performance in the class is being affected by experiences inside **or** outside the classroom, please let me know.
+- DEI is a process: I (and many others) am still learning about different perspectives and identities. If anything is said in class (by anyone, including by me) that made you feel uncomfortable, please let me know.
+
+---
+
+# Is this a math class?
+
+Statistics is a *mathematical science*. This course will involve elements of a typical math course, but also less typical aspects.
+
+- Often, you will be required to apply statistical knowledge *and* everyday knowledge ("common sense") to solve problems.
+- In statistics, there is not always a "correct" answer. You should be prepared to argue (in words) for why your answer is reasonable.
+- Written components of assignments are critical.
+- Statistics requires **context**: you need to tell me what numbers mean and why we care. *No context = no points.*
+
+.footnote[Adapted from [Martha K. Smith, University of Texas at Austin](https://web.ma.utexas.edu/users/mks/358Ksp06/M358K06syl.htm)]
+
+---
+
+# Lab Goals and Structure
+
+- **Overall goal:** Give you hands-on experience working with data in **R**, a powerful statistical computing tool.
+  - You'll complete weekly lab assignments using **R Markdown** via **RStudio Cloud**.
+
+## Typical Lab Structure
+- **Tutorial** (~30 minutes): We'll walk through how to perform tasks in R together
+  - iClicker engagement questions sprinkled throughout (not graded, just for fun)
+- **Collaboration** (~40 minutes): You'll work on the lab assignment in breakout rooms
+- **Wrap-Up** (~10 minutes): We'll talk about any questions or issues and complete a brief reflection.
+
+---
+class: inverse, center, middle
+
+# Let's get started!
+
+---
+
+# Learning Objectives
+
+1. Learn the difference between R, RStudio, and R Markdown
+1. Become familiar with the RStudio interface 
+1. Understand key components of an R Markdown document
+1. Learn how to use R to do basic calculations
+1. Learn how to import data into R and name objects
+
+---
+# Getting Started: What is R?
+
+- Statisticians (that means you!) often use computers to analyze data. 
+- **R** is a popular (and powerful) program for manipulating data, doing calculations, and making graphs.
+- R works by writing **`R code`**.
+
+--
+
+### Wait omg is this a coding class???
+
+--
+.pull-left[
+&lt;div style="text-align:center;"&gt;&lt;img src="images/isaac-no.gif" style="width:70%;"&gt;&lt;/div&gt;
+]
+
+Over the course of the semester, you'll learn how to edit and write some basic R code to help you analyze data to answer research questions. **This will always be through the lens of answering statistical questions.**
+
+---
+class: center, middle, inverse
+
+# Time for RStudio Cloud!
+
+## http://bit.ly/250sbiwn21rsc
+
+*Log in with Google using your U-M Account* (non-umich accounts will be deleted without warning)
+
+---
+# What are all these "R" terms?
+There are a lot of "R" words floating around. What's going on?
+
+- **R** is a "statistical computing environment" that's designed for manipulating data, generating plots, and performing analyses. It's also a programming language. You'll be *using R* this semester.
+- **R Studio** is an "integrated development environment (IDE)" for R (you'll never have to hear the term IDE again in this class). Basically, it's a pretty interface that makes working with R easier. You use R inside of R Studio. If R is ice cream, R Studio is the cone or cup.
+- **R Markdown** is a way to write pretty analysis reports that combines R code, R output (plots, analysis results, etc.) and text in one document. This lab document is an R Markdown report!
+
+---
+# R Markdown
+
+- Document creation interface
+- Integrate text with R code, R output, and graphs
+- Type code in **chunks**:
+
+````md
+```{r chunkName, &lt;chunk options&gt;}
+# Type code here
+
+```
+````
+
+---
+# Using R as a Calculator
+
+At its most basic, R is a fancy calculator.
+
+Here's a code chunk in which we do some math:
+````md
+```{r calculatorExample}
+5 * 7
+```
+````
+
+Output:
+
+
+```
+[1] 35
+```
+
+---
+
+# Try it! (Line ~87)
+
+In your R Markdown document, edit the code chunk that looks like this (line ~87) to compute 50 divided by 9:
+````md
+```{r tryItCalculator, error = T}
+# Write code here! This text is a comment, so it's not run by R. 
+# Replace it withcode to compute 50 divided by 9.
+```
+````
+
+--
+Solution:
+
+
+```r
+50 / 9
+```
+
+```
+[1] 5.555556
+```
+
+---
+# R Functions
+
+- We'll be using R primarily by using *functions*.
+  - These work just like math functions: they take inputs and return outputs
+  
+
+```r
+function.name(argument1, argument2, ...)
+```
+
+- Arguments to functions go **inside** parentheses and are separated by commas
+- **Finish what you started:** make sure you close parentheses you open!
+- Don't put a space between the name of the function and the open parenthesis
+
+---
+# R "Assignment" Syntax (line ~104)
+
+- Often, we want R to remember the results of a calculation so we can use it later.
+- We can **assign** these results a name:
+
+
+```r
+x &lt;- 36 / 6
+```
+
+- Read `&lt;-` as "gets": "x *gets* 36 divided by 6"
+
+---
+# R "Assignment" Syntax (line ~ 111)
+
+Now we can ask R what `x` is:
+
+
+```r
+x
+```
+
+```
+[1] 6
+```
+
+**NOTE:** R is "case-sensitive", which means that upper-case letters are *different than* lower-case letters. Notice what happens when we ask R for the value of `X`:
+
+
+```r
+X
+```
+
+```
+Error in eval(expr, envir, enclos): object 'X' not found
+```
+
+---
+# "Valid" Names in R
+- Names can contain only letters, numbers, periods (`.`) and underscores (`_`). 
+- Must start with a letter or period.
+
+.pull-left[
+
+```r
+tik tok &lt;- 12
+```
+
+```
+Error: &lt;text&gt;:1:5: unexpected symbol
+1: tik tok
+        ^
+```
+
+```r
+tiktok &lt;- 12
+```
+✅
+]
+
+--
+
+.pull-right[
+
+```r
+4eva &lt;- 4 * 2
+```
+
+```
+Error: &lt;text&gt;:1:1: unexpected input
+1: 4ev
+    ^
+```
+
+```r
+forever &lt;- 4 * 2
+```
+✅
+]
+
+---
+# CSV Files
+
+- A common way to store data
+- CSV = "**C**omma **S**eparated **V**alues"
+
+
+```
+"species","island","bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g","sex","year"
+"Adelie","Torgersen",39.1,18.7,181,3750,"male",2007
+"Adelie","Torgersen",39.5,17.4,186,3800,"female",2007
+"Adelie","Torgersen",40.3,18,195,3250,"female",2007
+"Adelie","Torgersen",36.7,19.3,193,3450,"female",2007
+"Adelie","Torgersen",39.3,20.6,190,3650,"male",2007
+"Adelie","Torgersen",38.9,17.8,181,3625,"female",2007
+```
+
+- Each row is a *case* or *observation*
+- Each column is a *variable*
+
+---
+
+class: inverse
+
+# Palmer Penguins Data 🐧
+We're going to learn about some basic R functions using a data set on 333 penguins living on 3 islands in the Palmer Archipelago in Antarctica. 
+
+.pull-left[
+Data were made available by [Dr. Kristen Gorman](www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php)
+and the [Palmer Station, Antarctica Long Term Ecological Research area](pal.lternet.edu), a member of the Long Term Ecological Research Network. The data were prepared by [Dr. Allison Horst](github.com/allisonhorst/palmerpenguins)
+]
+
+.pull-right[![Illustration of penguin species. Artwork by @allison_horst.](https://github.com/allisonhorst/palmerpenguins/raw/master/man/figures/lter_penguins.png)
+]
+
+---
+# "Read in" data
+
+
+```r
+penguins &lt;- read.csv("penguins.csv", stringsAsFactors = TRUE)
+```
+
+- The `read.csv` function takes a CSV file and imports it into R.
+- What name did we give the data in R?
+- Don't worry about `stringsAsFactors = FALSE` right now.
+
+---
+# Peek at the first 6 rows of the data
+
+```r
+head(penguins)
+```
+
+```
+  species    island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+1  Adelie Torgersen           39.1          18.7               181        3750
+2  Adelie Torgersen           39.5          17.4               186        3800
+3  Adelie Torgersen           40.3          18.0               195        3250
+4  Adelie Torgersen           36.7          19.3               193        3450
+5  Adelie Torgersen           39.3          20.6               190        3650
+6  Adelie Torgersen           38.9          17.8               181        3625
+     sex year
+1   male 2007
+2 female 2007
+3 female 2007
+4 female 2007
+5   male 2007
+6 female 2007
+```
+
+- Read this code as "head of penguins"
+
+---
+# View the `str`ucture of the data
+
+
+```r
+str(penguins)
+```
+
+```
+'data.frame':	333 obs. of  8 variables:
+ $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ bill_length_mm   : num  39.1 39.5 40.3 36.7 39.3 38.9 39.2 41.1 38.6 34.6 ...
+ $ bill_depth_mm    : num  18.7 17.4 18 19.3 20.6 17.8 19.6 17.6 21.2 21.1 ...
+ $ flipper_length_mm: int  181 186 195 193 190 181 195 182 191 198 ...
+ $ body_mass_g      : int  3750 3800 3250 3450 3650 3625 4675 3200 3800 4400 ...
+ $ sex              : Factor w/ 2 levels "female","male": 2 1 1 1 2 1 2 1 2 2 ...
+ $ year             : int  2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...
+```
+
+- Read this code as "stir of penguins"
+
+---
+class: center, inverse, middle
+
+# Now it's your turn!
+
+![](images/focus.gif)
+
+---
+
+# Lab Project ⌨️
+
+- You will be moved to a breakout room for the rest of the lab (minus ~10 minutes)
+- Introduce yourself to your collaborators!
+  - **The person whose birthday is next introduces themselves first**
+
+.pull-left[
+### Your task
+- Open "lab01-report.Rmd" from the Files pane
+- Answer each question
+```md
+:::{.answer}
+:::
+```
+]
+
+.pull-right[
+### How to get help
+- I'll be floating around between breakout rooms to check on everyone
+- Use the "Ask for help" button to flag me down
+- Let me know when you're done
+]
+
+---
+
+# 📥 Lab Submission: Finding Your Report
+Hit the Knit button one last time, then:
+.pull-left[
+## RStudio Cloud
+1. In the Files pane, check the box next to `lab01-report.html`
+2. Click More &gt; Export...
+3. Click Download and save the file on your computer in a folder you'll remember and be able to find later.
+]
+.pull-right[
+## RStudio Desktop (local)
+1. Locate the `lab01-report.html` file on your computer. The file will be saved in the location indicated at the top of the files pane. 
+]
+
+---
+
+# 📥 Lab Submission: Canvas (Due 1/29 8a ET)
+1. Click the "Assignments" panel on the left side of the page. Scroll to find "Lab 1", and open the assignment. Click "Submit Assignment".
+
+2. Towards the bottom of the page, you'll be able to choose `lab01-report.html` from the folder you saved it in from RStudio Cloud or noted if you're using RStudio Desktop. **You will only be able to upload a .html file -- do not upload any other file type.**
+3. Click "Submit Assignment". You're done! 
+
+---
+class: center, middle
+
+# 🔗 http://bit.ly/250labintros
+
+![](images/oprah-survey.gif)
+ 
+See my answers at http://bit.ly/nicksurveyanswers &lt;br&gt; (please don't hit submit)
+
+---
+# R Markdown Cheat Sheet
+
+.pull-left[
+````md
+**This text will be bold**
+
+*This text will be italic*
+
+`This text will look like code`
+
+````
+
+]
+
+.pull-right[
+**This text will be bold**
+
+*This text will be italic*
+
+`This text will look like code`
+]
+
+-- * 
+
+Some tips:
+- KNIT AND KNIT OFTEN
+- If spacing looks weird, add a blank line
+
+---
+# R Code Cheat Sheet
+
+## `&lt;-`
+- Assigns a value to a name
+- `name &lt;- value`
+
+---
+# R Code Cheat Sheet
+
+## `read.csv(file, stringsAsFactors = TRUE)`
+
+- `file` is the name of the file from which data are to be read
+- `stringsAsFactors` should generally be set to `TRUE` (all caps): this determines how text-like data in a CSV file is interpreted by R.
+
+---
+# R Code Cheat Sheet
+
+## `head(x, n)`
+
+- `x` is a data.frame
+- `n` is the number of rows to print
+
+---
+# R Code Cheat Sheet
+
+## `str(object)`
+
+- `object` is the R object about which you want to have some information (i.e., see the `str`ucture of).
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
