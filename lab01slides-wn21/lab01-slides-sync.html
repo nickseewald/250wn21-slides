@@ -4,6 +4,9 @@
     <title>STATS 250 Lab 01</title>
     <meta charset="utf-8" />
     <meta name="author" content="Nick Seewald   nseewald+250@umich.edu" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra_fit-screen/fit-screen.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="extras.css" type="text/css" />
   </head>
@@ -14,7 +17,9 @@ class: center, middle, inverse, title-slide
 # STATS 250 Lab 01
 ## Getting Started with R
 ### Nick Seewald <br> nseewald+250@umich.edu
-### Say hi in the chat!
+### <h3 style="color:#000;">
+In the chat: what’s your favorite TV show?
+</h3>
 ### Week of 1/25/2021
 
 ---
@@ -33,6 +38,9 @@ class: center
 &lt;img src="images/grad-students.gif" style="width:75%;"&gt;
 
 &lt;!-- &lt;img src="images/duolingo.png" style="width: 60%;"&gt; --&gt;
+
+&lt;img src="https://play-lh.googleusercontent.com/rqUimThNUkzbHCSrEPS1xij48rsbZPm7JRqRagejXtpxYyDDUr5KXvx2Cd5dU8qUmEE" style="width:30%;"&gt;
+
 ]
 
 .pull-right[
@@ -53,16 +61,15 @@ class: center
   - Go to umich.zoom.us, sign in, and choose "Profile" on the left
   - This will be used across all your U-M Zoom meetings
   
-1. In the chat, type your favorite TV show **but don't hit enter it until I say go**.
-
 ---
 
 # Course Policy
 
 ## Lab attendance
-- It's expected that you attend these syncrhonous lab sessions and participate in the collaborative breakout sessions. 
+- It's expected that you attend these synchronous lab sessions and participate in the collaborative breakout sessions. 
   - Please do not leave when breakout rooms open! 
-- If you can't make it to a syncrhonous session in a particular week, you *must* email me to get asynchronous materials. 
+  
+- If you can't make it to a synchronous session in a particular week, you *must* email me to get asynchronous materials. 
 
 ---
 
@@ -94,20 +101,28 @@ class: center
     &lt;td&gt;&lt;strong&gt;Time (ET)&lt;/strong&gt;&lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr style="color:var(--primary);"&gt;
-    &lt;td&gt;Tuesday&lt;/td&gt;
-    &lt;td&gt;9:00a - 10:00a&lt;/td&gt;
+    &lt;td&gt;Monday&lt;/td&gt;
+    &lt;td&gt;
+      &lt;a style="color:#000;" href="https://umich.zoom.us/j/97229098324?pwd=c1VWMjFUbFJ2VWFTWUpOVWlJQ0RSdz09"&gt;
+        6:00p - 7:30p
+      &lt;/a&gt;
+    &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-    &lt;td&gt;Wednesday&lt;/td&gt;
-    &lt;td&gt;11:00a - 12:00p&lt;/td&gt;
+    &lt;td&gt;Tuesday&lt;/td&gt;
+    &lt;td&gt;
+      &lt;a style="color:#fff;" href="https://umich.zoom.us/j/97229098324?pwd=c1VWMjFUbFJ2VWFTWUpOVWlJQ0RSdz09"&gt;
+        6:00p - 7:30p
+      &lt;/a&gt;
+    &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr style="color:var(--primary);"&gt; 
     &lt;td&gt;Thursday&lt;/td&gt;
-    &lt;td&gt;5:30p - 7:00p&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt;Friday&lt;/td&gt;
-    &lt;td&gt;9:30a - 10:30a&lt;/td&gt;
+    &lt;td&gt;
+      &lt;a style="color:#000;" href="https://umich.zoom.us/j/97229098324?pwd=c1VWMjFUbFJ2VWFTWUpOVWlJQ0RSdz09"&gt;
+        6:00p - 7:30p
+      &lt;/a&gt;
+    &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/table&gt;
 ]
@@ -173,9 +188,27 @@ Statistics is a *mathematical science*. This course will involve elements of a t
 
 ## Typical Lab Structure
 - **Tutorial** (~30 minutes): We'll walk through how to perform tasks in R together
-  - iClicker engagement questions sprinkled throughout (not graded, just for fun)
+  - iClicker engagement questions sprinkled throughout (extra credit!)
 - **Collaboration** (~40 minutes): You'll work on the lab assignment in breakout rooms
 - **Wrap-Up** (~10 minutes): We'll talk about any questions or issues and complete a brief reflection.
+
+---
+
+# iClicker: STARTS NEXT WEEK
+
+Please create an iClicker account!
+  - Go to [iclicker.com](iclicker.com), sign in as a student
+  - Sign up for an account at **University of Michigan Ann Arbor - LSA**
+  - Use your @umich.edu email address
+  - Your student ID is your **uniqname** (e.g., nseewald)
+  
+Join this course: 
+  - Tuesday 1pm: **Stats 250 Lab Section 210**
+  - Wednesday 8:30am: **Stats 250 Lab Section 214**
+
+--
+
+**Good iClicker participation earns you 1 extra credit point on the lab assignment.**
 
 ---
 class: inverse, center, middle
@@ -224,8 +257,36 @@ class: center, middle, inverse
 There are a lot of "R" words floating around. What's going on?
 
 - **R** is a "statistical computing environment" that's designed for manipulating data, generating plots, and performing analyses. It's also a programming language. You'll be *using R* this semester.
+--
+
 - **R Studio** is an "integrated development environment (IDE)" for R (you'll never have to hear the term IDE again in this class). Basically, it's a pretty interface that makes working with R easier. You use R inside of R Studio. If R is ice cream, R Studio is the cone or cup.
+--
+
 - **R Markdown** is a way to write pretty analysis reports that combines R code, R output (plots, analysis results, etc.) and text in one document. This lab document is an R Markdown report!
+
+---
+class: inverse
+exclude: TRUE
+# iClicker Question 📱
+
+.b.navy.ba.bw2.ph4.br4.f3[
+Which of the following best describes your experience with R/RStudio?
+]
+
+A. What the heck are you talking about?
+
+B. I've heard of it but never used it.
+
+C. I used it previously in a class or project, but I'm no expert.
+
+D. I could write R code in my sleep.
+
+--
+exclude: TRUE
+
+.b.tc.m4.f3.bg-light-yellow.dark-red.br2[
+Regardless of your experience with R, you should be able to do all of the lab assignments in this class!
+]
 
 ---
 # R Markdown
@@ -240,6 +301,44 @@ There are a lot of "R" words floating around. What's going on?
 
 ```
 ````
+
+--
+### Common Error Alert!
+
+- Make sure you have only **one** set of backticks at the beginning and end of a chunk
+- Make sure each chunk has a **unique** name
+
+---
+# R Markdown Formatting
+
+.pull-left[
+
+&lt;code style="color:#fff;"&gt;
+
+\*\*This text will be bold\*\*
+
+\*This text will be italic\*
+
+\`This text will look like code\`
+
+&lt;/code&gt;
+
+]
+
+.pull-right[
+**This text will be bold**
+
+*This text will be italic*
+
+`This text will look like code`
+]
+
+-- * 
+
+Some tips:
+- KNIT AND KNIT OFTEN
+- If spacing looks weird, add a blank line
+
 
 ---
 # Using R as a Calculator
@@ -315,6 +414,11 @@ x &lt;- 36 / 6
 ---
 # R "Assignment" Syntax (line ~ 111)
 
+
+```r
+x &lt;- 36 / 6
+```
+
 Now we can ask R what `x` is:
 
 
@@ -341,6 +445,8 @@ Error in eval(expr, envir, enclos): object 'X' not found
 # "Valid" Names in R
 - Names can contain only letters, numbers, periods (`.`) and underscores (`_`). 
 - Must start with a letter or period.
+
+--
 
 .pull-left[
 
@@ -435,20 +541,13 @@ head(penguins)
 ```
 
 ```
-  species    island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-1  Adelie Torgersen           39.1          18.7               181        3750
-2  Adelie Torgersen           39.5          17.4               186        3800
-3  Adelie Torgersen           40.3          18.0               195        3250
-4  Adelie Torgersen           36.7          19.3               193        3450
-5  Adelie Torgersen           39.3          20.6               190        3650
-6  Adelie Torgersen           38.9          17.8               181        3625
-     sex year
-1   male 2007
-2 female 2007
-3 female 2007
-4 female 2007
-5   male 2007
-6 female 2007
+  species    island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g    sex year
+1  Adelie Torgersen           39.1          18.7               181        3750   male 2007
+2  Adelie Torgersen           39.5          17.4               186        3800 female 2007
+3  Adelie Torgersen           40.3          18.0               195        3250 female 2007
+4  Adelie Torgersen           36.7          19.3               193        3450 female 2007
+5  Adelie Torgersen           39.3          20.6               190        3650   male 2007
+6  Adelie Torgersen           38.9          17.8               181        3625 female 2007
 ```
 
 - Read this code as "head of penguins"
@@ -493,7 +592,7 @@ class: center, inverse, middle
 .pull-left[
 ### Your task
 - Open "lab01-report.Rmd" from the Files pane
-- Answer each question
+- Answer each question in the provided answer blocks:
 ```md
 :::{.answer}
 :::
@@ -524,49 +623,108 @@ Hit the Knit button one last time, then:
 
 ---
 
-# 📥 Lab Submission: Canvas (Due 1/29 8a ET)
+# 📥 Lab Submission: Canvas (Due 1/29 12p ET)
 1. Click the "Assignments" panel on the left side of the page. Scroll to find "Lab 1", and open the assignment. Click "Submit Assignment".
 
 2. Towards the bottom of the page, you'll be able to choose `lab01-report.html` from the folder you saved it in from RStudio Cloud or noted if you're using RStudio Desktop. **You will only be able to upload a .html file -- do not upload any other file type.**
 3. Click "Submit Assignment". You're done! 
 
 ---
-class: center, middle
+class: inverse
+exclude: TRUE
 
-# 🔗 http://bit.ly/250labintros
+# iClicker Question 📱
 
-![](images/oprah-survey.gif)
- 
-See my answers at http://bit.ly/nicksurveyanswers &lt;br&gt; (please don't hit submit)
 
----
-# R Markdown Cheat Sheet
-
-.pull-left[
-````md
-**This text will be bold**
-
-*This text will be italic*
-
-`This text will look like code`
-
-````
-
+.b.navy.ba.bw2.ph4.br4.f3[ 
+True or False: The following two code chunks will print the same result.
 ]
+.pull-left[
+
+```r
+x &lt;- 8 / 4
+y &lt;- x + 5
+y
+```
+]
+
 
 .pull-right[
-**This text will be bold**
 
-*This text will be italic*
-
-`This text will look like code`
+```r
+(8 / 4) + 5
+```
 ]
 
--- * 
 
-Some tips:
-- KNIT AND KNIT OFTEN
-- If spacing looks weird, add a blank line
+A. True
+
+B. False
+
+--
+exclude: TRUE
+
+.b.tc.m4.f3.bg-light-yellow.dark-red.br2[
+TRUE. The first chunk saves the value 2 in the variable x, then saves the value 7 in the variable y, and then prints the value of y.  The second chunk does the same arithmetic without saving any values in variables and prints the answer, which is 7.
+]
+
+---
+class: inverse
+exclude: TRUE
+
+# iClicker Question 📱
+
+.b.navy.ba.bw2.ph4.br4.f3[
+You have a CSV file that contains opening and closing prices for Apple stock for every trading day during 2020. The file is called “apple_stock.csv.” You want to perform analysis on this data (perhaps you want to plot the closing prices for each day). What line of code might you use to read this data into R before performing this analysis?
+]
+
+A. `"read.csv(apple_stock.csv)"` &lt;br&gt;
+B. `read.csv("apple_stock.csv")` &lt;br&gt;
+C. `prices &lt;- read.csv("apple_stock.csv")` &lt;br&gt;
+D. `prices &lt;- "read.csv(apple_stock.csv)"`
+
+---
+class: inverse
+exclude: TRUE
+
+# iClicker Question 📱
+
+.b.navy.ba.bw2.ph4.br4.f3[
+You have a CSV file that contains opening and closing prices for Apple stock for every trading day during 2020. The file is called “apple_stock.csv.” You want to perform analysis on this data (perhaps you want to plot the closing prices for each day). What line of code might you use to read this data into R before performing this analysis?
+]
+
+.b.tc.m4.f3.bg-light-yellow.dark-red.br2[
+C. &lt;code&gt;prices &lt;- read.csv("apple_stock.csv")&lt;/code&gt;
+
+Use the read.csv() function to read in a CSV file and pass the file name in quotes as an argument to read.csv().  Save this data in a variable called “prices” (we could use any name we want as the variable name such as “apple” or “daily_prices”), so we can access the data later when we perform our analysis.
+]
+
+---
+class: inverse
+exclude: TRUE
+
+# iClicker Question 📱
+
+.b.navy.ba.bw2.ph4.br4.f3[
+Why should you Knit your .Rmd file often?
+]
+
+A. This will let you view your answers in the .html file, which is the file that will be graded by your lab instructor.
+
+B. Your code will not always look like you expect it to in the .html file.
+
+C. The .html file can be much easier to read than the .Rmd file.
+
+D. All of the above
+
+--
+exclude: TRUE
+
+.b.tc.m4.f3.bg-light-yellow.dark-red.br2[
+D. ALL OF THE ABOVE
+
+These are all reasons you should knit and knit often!
+]
 
 ---
 # R Code Cheat Sheet

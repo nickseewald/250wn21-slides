@@ -1,8 +1,8 @@
 ---
 title: "STATS 250 Lab 01"
 subtitle: "Getting Started with R"
-author: "Nick Seewald<br />nseewald&#64;umich.edu"
-date: "Week of 08/31/2020"
+author: "Nick Seewald <br> nseewald+250&#64;umich.edu"
+date: "Week of 1/25/2021"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -18,6 +18,7 @@ class: center
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = TRUE, include = TRUE, eval = TRUE, comment = NA)
+iClickerAnswers <- FALSE
 ```
 
 ```{r xaringan-themer, include = FALSE, warning = FALSE}
@@ -29,15 +30,18 @@ library(xaringanthemer)
 style_duo(primary_color = "#00274c",
           secondary_color = "#ffcb05",
           header_font_google = google_font("DM Serif Display"),
-          text_font_google = google_font("PT Sans", "400", "400i", "600"),
-          code_font_google = google_font("Roboto Mono", "400"),
-          text_font_size = "22pt"
+          text_font_google = google_font("Source Sans Pro", "400", "400i", "600"),
+          code_font_google = google_font("Source Code", "400"),
+          text_font_size = "22pt",
+          code_font_size = "18pt"
 )
+xaringanExtra::use_tachyons()
 ```
 
 ```{r xaringanExtra, echo=FALSE}
 xaringanExtra::use_webcam()
 xaringanExtra::use_fit_screen()
+xaringanExtra::use_tachyons()
 ```
 
 # Who am I? `r emo::ji("man_teacher")`
@@ -46,7 +50,7 @@ xaringanExtra::use_fit_screen()
 
 <img src="images/grad-students.gif" style="width:75%;">
 
-<img src="images/duolingo.png" style="width: 60%;">
+<img src="https://play-lh.googleusercontent.com/rqUimThNUkzbHCSrEPS1xij48rsbZPm7JRqRagejXtpxYyDDUr5KXvx2Cd5dU8qUmEE" style="width:30%;">
 ]
 
 .pull-right[
@@ -61,67 +65,10 @@ class: center, middle
 
 ** While you are taking this class, you are a statistician! **
 
-## `r emo::ji("link")` bit.ly/250labintros
-
-See my answers at [bit.ly/nicksurveyanswers](http://bit.ly/nicksurveyanswers) <br />
-(please don't hit submit on my answers!)
+## `r emo::ji("link")` http://bit.ly/250introsW21
 
 ---
 
-# Course Policy
-
-## Grading
-
-.pull-left[
-<table style="font-size:20pt;">
-  <tr style="text-align:center;">
-    <td><strong>Component</strong></td>
-    <td><strong>Proportion of grade</strong></td>
-  </tr>
-  <tr style="color:var(--primary);">
-    <td>Exams</td>
-    <td>30% (15% &times; 2)</td>
-  </tr>
-  <tr>
-    <td>Quizzes</td>
-    <td>20% (10% &times; 2)</td>
-  </tr>
-  <tr style="color:var(--primary);"> 
-    <td>Homework</td>
-    <td>20% (12 total, 2 dropped)</td>
-  </tr>
-  <tr>
-    <td>MWrite</td>
-    <td>15% (5% + 10%)</td>
-  </tr>
-  <tr style="color:var(--primary);">
-    <td>Lab Work</td>
-    <td>10% (12 total, 1 dropped)</td>
-  </tr>
-  <tr>
-    <td>Participation</td>
-    <td>5% (1% eCoach + 1% Survey + 3% Piazza)</td>
-  </tr>
-</table>
-]
-
-.pull-right[
-- Letter grades are assigned based on a fixed scale, there is no curve. See syllabus.
-- Grades will be traditional A-C then NRC for D-E
-]
-
----
-
-# Course Policy
-
-## Lab attendance
-- Every week, you have the option of attending either of my synchronous sessions **or** you can complete the lab asynchronously.
-  - **Section 108**: Monday 10:00a - 11:30a Eastern
-  - **Section 106**: Monday 1:00p - 2:30p Eastern
-  - **Section 115**: Asynchronous
-- I'd appreciate you telling me your plans each week before lab each week; I'll be sending out a survey on Fridays for the coming week.
-
----
 # Course Policy
 
 .pull-left[
@@ -139,23 +86,32 @@ See my answers at [bit.ly/nicksurveyanswers](http://bit.ly/nicksurveyanswers) <b
     <td><strong>Time (ET)</strong></td>
   </tr>
   <tr style="color:var(--primary);">
-    <td>Tuesday</td>
-    <td>9:00a - 10:00a</td>
+    <td>Monday</td>
+    <td>
+      <a style="color:#000;" href="https://umich.zoom.us/j/97229098324?pwd=c1VWMjFUbFJ2VWFTWUpOVWlJQ0RSdz09">
+        6:00p - 7:30p
+      </a>
+    </td>
   </tr>
   <tr>
-    <td>Wednesday</td>
-    <td>11:00a - 12:00p</td>
+    <td>Tuesday</td>
+    <td>
+      <a style="color:#fff;" href="https://umich.zoom.us/j/97229098324?pwd=c1VWMjFUbFJ2VWFTWUpOVWlJQ0RSdz09">
+        6:00p - 7:30p
+      </a>
+    </td>
   </tr>
   <tr style="color:var(--primary);"> 
     <td>Thursday</td>
-    <td>5:30p - 7:00p</td>
-  </tr>
-  <tr>
-    <td>Friday</td>
-    <td>9:30a - 10:30a</td>
+    <td>
+      <a style="color:#000;" href="https://umich.zoom.us/j/97229098324?pwd=c1VWMjFUbFJ2VWFTWUpOVWlJQ0RSdz09">
+        6:00p - 7:30p
+      </a>
+    </td>
   </tr>
 </table>
 ]
+
 
 ---
 # Course Policy
@@ -172,20 +128,24 @@ See my answers at [bit.ly/nicksurveyanswers](http://bit.ly/nicksurveyanswers) <b
 ]
 
 ---
+class: .f4
 # Lab Rules and Responsibilities
 .pull-left[
 ## 1. Be Respectful.
-- Respect to me includes watching the entirety of these videos, communicating in good faith, and filling out attendance mode forms each week.
-- Treat your classmates with dignity and *learn from your differences*
+- Respect to me includes watching the entirety of these videos, and communicating with kindness.
 - Respect yourself: *be ready and willing to learn*
+
+## 2. Communicate!
+- I can't help with things I don't know about.
+- Direct personal questions to me (incl. questions about grading)
 ]
 
---
 .pull-right[
-## 2. Actively Collaborate.
-- Lab activities will involve working with your peers: you should participate and learn from each other.
-- In async weeks, **use Piazza**
-- Work with friends in other labs (within Dr. Miller's course); your write-ups must be your own.
+## 3. Actively Collaborate.
+- Lab activities will likely involve working with your peers: you should participate and learn from each other.
+- In the intro survey, you can opt-in to group matchmaking! Details to come.
+- Work with friends in other labs (within Miller/Hsing); your write-ups must be your own.
+
 ]
 
 ---
@@ -218,14 +178,36 @@ Statistics is a *mathematical science*. This course will involve elements of a t
 - Often, you will be required to apply statistical knowledge *and* everyday knowledge ("common sense") to solve problems.
 - In statistics, there is not always a "correct" answer. You should be prepared to argue (in words) for why your answer is reasonable.
 - Written components of assignments are critical.
+- Statistics requires **context**: you need to tell me what numbers mean and why we care. *No context = no points.*
 
 .footnote[Adapted from [Martha K. Smith, University of Texas at Austin](https://web.ma.utexas.edu/users/mks/358Ksp06/M358K06syl.htm)]
 
---
-**TL;DR**
-This is NOT a math class. So if you're "not a math person", don't worry.
 
 ---
+# Lab Goals and Structure
+
+- **Overall goal:** Give you hands-on experience working with data in **R**, a powerful statistical computing tool.
+  - You'll complete weekly lab assignments using **R Markdown** via **RStudio Cloud**.
+
+## Typical Lab Structure
+- **Tutorial Video** (~25 minutes): We'll walk through how to perform tasks in R together
+- **Lab Assignment**: Complete the assignment in RStudio Cloud
+- **iClicker Wrap-Up**: Complete the iClicker wrap-up assignment for 1 extra credit point on the lab assignment (starting with lab 2)
+
+---
+exclude: true
+# iClicker
+
+Please create an iClicker account!
+  - Go to [iclicker.com](iclicker.com), sign in as a student
+  - Sign up for an account at **University of Michigan Ann Arbor - LSA**
+  - Use your @umich.edu email address
+  - Your student ID is your **uniqname** (e.g., nseewald)
+  
+Join this course:  **Stats 250 Lab Section 201**
+
+---
+
 class: inverse, center, middle
 
 # Let's get started!
@@ -234,28 +216,11 @@ class: inverse, center, middle
 
 # Learning Objectives
 
-.pull-left[
-### Statistical Learning Objectives
-1. Visualize categorical data
-2. Summarize quantitative and categorical data
-]
-.pull-right[
-### R Learning Objectives
-1. Learn the difference between R, R Studio, and R Markdown
-2. Become familiar with the R Studio interface 
-3. Understand key components of an R Markdown document
-4. Become familiar with R functions and arguments
-]
-
----
-# How does lab work? `r emo::ji("thinking_face")`
-
-Three components each week:
-1. Logistics & Demo
-2. Try It!
-3. Discussion Questions
-
-You'll work through the Try It! and Discussion, and submit an "R Markdown" report. 
+1. Learn the difference between R, RStudio, and R Markdown
+1. Become familiar with the RStudio interface 
+1. Understand key components of an R Markdown document
+1. Learn how to use R to do basic calculations
+1. Learn how to import data into R and name objects
 
 ---
 # Getting Started: What is R?
@@ -276,34 +241,94 @@ You'll work through the Try It! and Discussion, and submit an "R Markdown" repor
 Over the course of the semester, you'll learn how to edit and write some basic R code to help you analyze data to answer research questions. **This will always be through the lens of answering statistical questions.**
 
 ---
-class: center, middle, inverse
+class: inverse
 
-# Time for RStudio Cloud!
+# RStudio Cloud
 
-## http://bit.ly/250millerfa20rsc
+## https://bit.ly/250sbiwn21rsc
 
 *Log in with Google using your U-M Account* (non-umich accounts will be deleted without warning)
+
+# RStudio Desktop
+
+Follow instructions to get lab materials in the assignment on Canvas
+
 ---
 background-image: url("images/rsc-student-view.jpg")
 <!-- background-position: 50% 50% -->
 background-size: contain
----
-class: center, middle
-# RStudio Desktop
 
-Follow instructions to get lab materials at 
-## github.com/STATS250SBI/lab01-fa20
-
-(Link is also on Canvas in the Lab 1 Assignment)
 
 ---
+# What are all these "R" terms?
+There are a lot of "R" words floating around. What's going on?
 
+- **R** is a "statistical computing environment" that's designed for manipulating data, generating plots, and performing analyses. It's also a programming language. You'll be *using R* this semester.
+--
+
+- **R Studio** is an "integrated development environment (IDE)" for R (you'll never have to hear the term IDE again in this class). Basically, it's a pretty interface that makes working with R easier. You use R inside of R Studio. If R is ice cream, R Studio is the cone or cup.
+--
+
+- **R Markdown** is a way to write pretty analysis reports that combines R code, R output (plots, analysis results, etc.) and text in one document. This lab document is an R Markdown report!
+
+---
+# R Markdown
+
+- Document creation interface
+- Integrate text with R code, R output, and graphs
+- Type code in **chunks**:
+
+````md
+`r ''````{r chunkName, <chunk options>}
+# Type code here
+
+```
+````
+
+--
+### Common Error Alert!
+
+- Make sure you have only **one** set of backticks at the beginning and end of a chunk
+- Make sure each chunk has a **unique** name
+
+---
+# R Markdown Cheat Sheet
+
+.pull-left[
+
+<code style="color:#fff;">
+
+\*\*This text will be bold\*\*
+
+\*This text will be italic\*
+
+\`This text will look like code\`
+
+</code>
+
+]
+
+.pull-right[
+**This text will be bold**
+
+*This text will be italic*
+
+`This text will look like code`
+]
+
+-- * 
+
+Some tips:
+- KNIT AND KNIT OFTEN
+- If spacing looks weird, add a blank line
+
+---
 # Using R as a Calculator
 
 At its most basic, R is a fancy calculator.
 
 Here's a code chunk in which we do some math:
-````markdown
+````md
 `r ''````{r calculatorExample}
 5 * 7
 ```
@@ -311,19 +336,19 @@ Here's a code chunk in which we do some math:
 
 Output:
 
-```{r calculatorExample}
+```{r calculatorExample, echo = FALSE}
 5 * 7
 ```
 
 ---
 
-# Try it!
+# Try it! (Line ~87)
 
-In your R Markdown document, edit the code chunk that looks like this (line ~79) to compute 50 divided by 9:
+In your R Markdown document, edit the code chunk that looks like this (line ~87) to compute 50 divided by 9:
 ````md
 `r ''````{r tryItCalculator, error = T}
-# Write code here! This text is a comment, so it's not run by R. Replace it with
-# code to compute 50 divided by 9.
+# Write code here! This text is a comment, so it's not run by R. 
+# Replace it withcode to compute 50 divided by 9.
 ```
 ````
 
@@ -335,6 +360,93 @@ Solution:
 ```
 
 ---
+# R Functions
+
+- We'll be using R primarily by using *functions*.
+  - These work just like math functions: they take inputs and return outputs
+  
+```{r genericFunction, eval = F}
+function.name(argument1, argument2, ...)
+```
+
+- Arguments to functions go **inside** parentheses and are separated by commas
+- **Finish what you started:** make sure you close parentheses you open!
+- Don't put a space between the name of the function and the open parenthesis
+
+---
+# R "Assignment" Syntax (line ~104)
+
+- Often, we want R to remember the results of a calculation so we can use it later.
+- We can **assign** these results a name:
+
+```{r assignmentDemo}
+x <- 36 / 6
+```
+
+- Read `<-` as "gets": "x *gets* 36 divided by 6"
+
+---
+# R "Assignment" Syntax (line ~ 111)
+
+```{r assignmentDemo}
+```
+
+Now we can ask R what `x` is:
+
+```{r x}
+x
+```
+
+**NOTE:** R is "case-sensitive", which means that upper-case letters are *different than* lower-case letters. Notice what happens when we ask R for the value of `X`:
+
+```{r X, error = T}
+X
+```
+
+---
+# "Valid" Names in R
+- Names can contain only letters, numbers, periods (`.`) and underscores (`_`). 
+- Must start with a letter or period.
+
+--
+
+.pull-left[
+```{r badName1, error = T}
+tik tok <- 12
+```
+```{r goodname1}
+tiktok <- 12
+```
+`r emo::ji("check")`
+]
+
+--
+
+.pull-right[
+```{r badName2, error = T}
+4eva <- 4 * 2
+```
+```{r goodname2}
+forever <- 4 * 2
+```
+`r emo::ji("check")`
+]
+
+---
+# CSV Files
+
+- A common way to store data
+- CSV = "**C**omma **S**eparated **V**alues"
+
+```{r echo = F}
+write.csv(head(read.csv("penguins.csv")), row.names = F)
+```
+
+- Each row is a *case* or *observation*
+- Each column is a *variable*
+
+---
+
 class: inverse
 
 # Palmer Penguins Data `r emo::ji("penguin")`
@@ -349,53 +461,32 @@ and the [Palmer Station, Antarctica Long Term Ecological Research area](pal.lter
 ]
 
 ---
-
-# First Steps
-
-### "Read in" data
+# "Read in" data
 
 ```{r readData}
-penguins <- read.csv(url("https://raw.githubusercontent.com/STATS250SBI/palmerpenguins/master/inst/extdata/penguins_NArm.csv"))
+penguins <- read.csv("penguins.csv", stringsAsFactors = TRUE)
 ```
 
-- You'll learn more about this next week
-- For now, the important thing to know is that we've told R we want to use a data set at that URL and we want to call it `penguins`.
+- The `read.csv` function takes a CSV file and imports it into R.
+- What name did we give the data in R?
+- Don't worry about `stringsAsFactors = FALSE` right now.
+
 ---
-
-# First Steps 
-
-### Peek at the first 6 rows of the data
+# Peek at the first 6 rows of the data
 ```{r headPenguins}
 head(penguins)
 ```
 
----
-
-# Bar Charts in R `r emo::ji("bar_chart")`
-
-Let's make a bar chart of the number of penguins observed in each species:
-
-```{r plotOptions, echo = F, include = T}
-par(mar = c(4, 4, 1, .1))
-```
-
-```{r speciesPlot, fig.align='center', fig.height=3, dev = 'svg'}
-barplot(table(penguins$species), #<<
-     xlab = "Species",
-     ylab = "Frequency",
-     main = "Bar Chart of Number of Penguins of Each Species Observed",
-     col = c("darkorange1", "mediumorchid2", "darkcyan"))
-```
+- Read this code as "head of penguins"
 
 ---
+# View the `str`ucture of the data
 
-# Numerical Summaries
-
-We can use R to summarize data numerically. A good way to do this is the `summary()` function.
-
-```{r flipperSummaries}
-summary(penguins$flipper_length_mm)
+```{r strPenguins}
+str(penguins)
 ```
+
+- Read this code as "stir of penguins"
 
 ---
 class: center, inverse, middle
@@ -410,14 +501,19 @@ class: center, inverse, middle
 
 .pull-left[
 ### Your tasks
-- Complete the "Try It!" and "Discussion" portions of the lab assignment by copy/pasting and modifying appropriate code from earlier in the document.
+- Open "lab01-report.Rmd" from the Files pane
+- Answer each question in the provided answer blocks:
+```md
+:::{.answer}
+:::
+```
 ]
 
 .pull-right[
 ### How to get help
 - Use the "labs" section of Piazza to ask questions and work with your peers.
 - If you use Piazza, please note that in the "Collaborators" list at the top of the discussion section.
-- If you're really stuck, email me! nseewald@umich.edu
+- If you're really stuck, email me! [nseewald+250@umich.edu](mailto:nseewald+250@umich.edu)
 ]
 
 ---
@@ -437,7 +533,7 @@ Hit the Knit button one last time, then:
 
 ---
 
-# `r emo::ji("inbox_tray")` Lab Submission: Canvas (Due 9/11 8a ET)
+# `r emo::ji("inbox_tray")` Lab Submission: Canvas (Due 1/29 12p ET)
 1. Click the "Assignments" panel on the left side of the page. Scroll to find "Lab 1", and open the assignment. Click "Submit Assignment".
 
 2. Towards the bottom of the page, you'll be able to choose `lab01report.html` from the folder you saved it in from RStudio Cloud or noted if you're using RStudio Desktop. **You will only be able to upload a .html file -- do not upload any other file type.**

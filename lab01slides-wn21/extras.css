@@ -7,6 +7,10 @@
   color: #00274c;
 }
 
+.inverse code {
+  color: #00274c;
+}
+
 .title-slide h1 {
   font-size: 100pt;
   margin-bottom: 0;
@@ -22,7 +26,7 @@
 .title-slide h3 {
   margin: .25em;
   color: #fff;
-  font-family: PT Sans;
+  font-family: Source Sans Pro;
 }
 
 h2 {
