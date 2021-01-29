@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>STATS 250 Lab 02</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Nick Seewald   nseewald+250@umich.edu" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-webcam/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <script src="libs/xaringanExtra_fit-screen/fit-screen.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="extras.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STATS 250 Lab 02
+## Graphical and Numerical Summaries
+### Nick Seewald <br> nseewald+250@umich.edu
+### Week of 1 February 2021
+
+---
+
+
+
+
+
+
+
+
+# Announcements and Logistics
+
+- New Piazza setup!
+  - Smaller sub-course (~250 students vs. ~900)
+  - Please *SEARCH BEFORE POSTING*
+- Looking for more R resources?
+  - RStudio Primers in the left sidebar of the RStudio Cloud interface
+  - [learnr4free.com](https://www.learnr4free.com/en/index.html) - look for "beginner-friendly" in the keywords
+- iClicker
+  - In the **iClicker REEF app** or on [iclicker.com](https://app.reef-education.com/), complete the assignment for 1 extra credit point on labs.
+  - You can earn more than 100% on your lab score.
+
+---
+class: center, middle
+# Reminders 💡
+
+Your tasks for the week running Friday 1/29 - Friday 2/5:
+
+| Task | Due Date | Submission |
+|:-----|:---------|:-----------|
+| Lab 2 | Friday 2/5 12:00PM ET | Canvas |
+| Homework 2 | Friday 2/6 12:00PM ET | course.work |
+
+---
+
+# Learning Goals
+
+- Learn how to make a bar chart in R
+- Learn how to make frequency tables (one-way and two-way)
+- Learn how to make a boxplot in R
+- Learn how to find the five-number summary of a variable and find specific numerical summaries
+- Learn how to make a histogram in R
+
+---
+
+class: inverse, center, middle
+
+# Let's get started!
+
+---
+class: inverse
+
+# RStudio Cloud
+
+## https://rstudio.cloud
+
+*Log in with Google using your U-M Account* (non-umich accounts will be deleted without warning)
+
+# RStudio Desktop
+
+Follow instructions to get lab materials in the assignment on Canvas
+
+---
+class: inverse
+
+# Palmer Penguins Data 🐧
+We're going to learn about some basic R functions using a data set on 333 penguins living on 3 islands in the Palmer Archipelago in Antarctica. 
+
+.pull-left[
+Data were made available by [Dr. Kristen Gorman](www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php)
+and the [Palmer Station, Antarctica Long Term Ecological Research area](pal.lternet.edu), a member of the Long Term Ecological Research Network. The data were prepared by [Dr. Allison Horst](github.com/allisonhorst/palmerpenguins)
+]
+
+.pull-right[![Illustration of penguin species. Artwork by @allison_horst.](https://github.com/allisonhorst/palmerpenguins/raw/master/man/figures/lter_penguins.png)
+]
+
+---
+# "Read in" data
+
+
+```r
+penguins &lt;- read.csv("penguins.csv", stringsAsFactors = TRUE)
+```
+
+- The `read.csv` function takes a CSV file and imports it into R.
+- What name did we give the data in R?
+- Don't worry about `stringsAsFactors = FALSE` right now.
+
+---
+# View the `str`ucture of the data
+
+
+```r
+str(penguins)
+```
+
+```
+'data.frame':	333 obs. of  8 variables:
+ $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ bill_length_mm   : num  39.1 39.5 40.3 36.7 39.3 38.9 39.2 41.1 38.6 34.6 ...
+ $ bill_depth_mm    : num  18.7 17.4 18 19.3 20.6 17.8 19.6 17.6 21.2 21.1 ...
+ $ flipper_length_mm: int  181 186 195 193 190 181 195 182 191 198 ...
+ $ body_mass_g      : int  3750 3800 3250 3450 3650 3625 4675 3200 3800 4400 ...
+ $ sex              : Factor w/ 2 levels "female","male": 2 1 1 1 2 1 2 1 2 2 ...
+ $ year             : int  2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...
+```
+
+**IN THE CHAT:** Is `species` categorical or quantitative?
+
+--
+
+**IN THE CHAT:** How do you know?
+
+---
+# Frequency Tables
+
+Use the `table()` function on a categorical variable:
+
+
+```r
+table(penguins$species)
+```
+
+```
+
+   Adelie Chinstrap    Gentoo 
+      146        68       119 
+```
+
+--
+## What's that dollar sign (`$`)?
+- You need to tell R what `data.frame` the variable is from.
+- The `species` variable is *inside* the `penguins` data.
+
+---
+# Frequency Tables
+
+You can make a two-way table by giving `table()` two arguments:
+
+
+```r
+table(penguins$species, penguins$island)
+```
+
+```
+           
+            Biscoe Dream Torgersen
+  Adelie        44    55        47
+  Chinstrap      0    68         0
+  Gentoo       119     0         0
+```
+
+## Data is *R*eally *C*ool
+
+Data is **R**eally **C**ool, so the first variable you give to `table()` is in the **r**ows of the table, and the second is in the **c**olumns. **ROWS, COLUMNS**
+---
+# Bar Charts (graphs, plots, you get it)
+
+Let's visualize the categorical `species` variable in the `penguins` data. 
+
+.pull-left[
+
+```r
+barplot(table(penguins$species),
+     xlab = "Species",
+     ylab = "Frequency",
+     main = "Bar Chart of Number of Penguins of Each Species Observed",
+     col = c("darkorange1", "mediumorchid2", "darkcyan"))
+```
+
+- `xlab`: x-axis label
+- `ylab`: y-axis label
+- `main`: plot title
+- `col`: colors
+]
+.pull-right[
+![](lab02-slides-async_files/figure-html/speciesPlot-1.png)
+]
+
+---
+# Penguins Data
+
+
+```r
+str(penguins)
+```
+
+```
+'data.frame':	333 obs. of  8 variables:
+ $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ bill_length_mm   : num  39.1 39.5 40.3 36.7 39.3 38.9 39.2 41.1 38.6 34.6 ...
+ $ bill_depth_mm    : num  18.7 17.4 18 19.3 20.6 17.8 19.6 17.6 21.2 21.1 ...
+ $ flipper_length_mm: int  181 186 195 193 190 181 195 182 191 198 ...
+ $ body_mass_g      : int  3750 3800 3250 3450 3650 3625 4675 3200 3800 4400 ...
+ $ sex              : Factor w/ 2 levels "female","male": 2 1 1 1 2 1 2 1 2 2 ...
+ $ year             : int  2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...
+```
+
+**IN THE CHAT:** Is `flipper_length_mm`categorical or quantitative?
+
+--
+
+**IN THE CHAT:** How do you know?
+
+---
+# Numerical Summaries
+
+
+```r
+summary(penguins$flipper_length_mm)
+```
+
+```
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    172     190     197     201     213     231 
+```
+
+- `Min.`: minimum (shortest) flipper length
+- `1st Qu.`: first quartile flipper length
+- `Median`: median flipper length
+- `Mean`: mean flipper length
+- `3rd Qu.`: third quartile flipper length
+- `Max.`: maximum (longest) flipper length
+
+---
+# Numerical Summaries
+
+You can always get just the one summary you're looking for by using the specific function:
+
+.pull-left[
+
+```r
+min(penguins$flipper_length_mm)
+```
+
+```
+[1] 172
+```
+
+```r
+mean(penguins$flipper_length_mm)
+```
+
+```
+[1] 200.967
+```
+
+```r
+median(penguins$flipper_length_mm)
+```
+
+```
+[1] 197
+```
+]
+.pull-right[
+
+```r
+max(penguins$flipper_length_mm)
+```
+
+```
+[1] 231
+```
+
+```r
+sd(penguins$flipper_length_mm)
+```
+
+```
+[1] 14.01577
+```
+
+```r
+IQR(penguins$flipper_length_mm)
+```
+
+```
+[1] 23
+```
+]
+
+---
+# Boxplots
+
+.pull-left[
+
+```r
+boxplot(penguins$flipper_length_mm,
+        main = "Boxplot of Penguin Flipper Length",
+        ylab = "Flipper Length (mm)")
+```
+]
+.pull-right[
+![](lab02-slides-async_files/figure-html/boxplot-1.png)
+]
+
+---
+# Histograms
+
+.pull-left[
+
+```r
+hist(penguins$flipper_length_mm)
+```
+
+{{content}}
+]
+
+.pull-right[
+![](lab02-slides-async_files/figure-html/hist-1.png)
+]
+
+--
+Those are some terrible axis labels, huh?
+
+Fix them with `main` and `xlab`!
+
+---
+# Histograms
+
+.pull-left[
+
+```r
+hist(penguins$flipper_length_mm,
+*    main = "Histogram of Penguin Flipper Length",
+*    xlab = "Flipper Length (mm)")
+```
+
+]
+
+.pull-right[
+![](lab02-slides-async_files/figure-html/histLabels-1.png)
+]
+
+---
+# Ask R for help!
+
+
+![](images/rhelp.png)
+
+---
+class: center, inverse, middle
+
+# Now it's your turn!
+
+![](images/focus.gif)
+
+---
+
+# Lab Project ⌨️
+
+.pull-left[
+### Your tasks
+- Open "lab02-report.Rmd" from the Files pane
+- Answer each question in the provided answer blocks:
+```md
+:::{.answer}
+# Your answer goes here
+:::
+```
+]
+
+.pull-right[
+### How to get help
+- Use the "labs" section of Piazza to ask questions and work with your peers.
+- If you use Piazza, please note that in the "Collaborators" list at the top of the discussion section.
+- If you're really stuck, email me! [nseewald+250@umich.edu](mailto:nseewald+250@umich.edu)
+]
+
+---
+
+# 📥 Lab Submission: Finding Your Report
+Hit the Knit button one last time, then:
+.pull-left[
+## RStudio Cloud
+1. In the Files pane, check the box next to `lab02-report.html`
+2. Click More &gt; Export...
+3. Click Download and save the file on your computer in a folder you'll remember and be able to find later.
+]
+.pull-right[
+## RStudio Desktop (local)
+1. Locate the `lab02-report.html` file on your computer. The file will be saved in the location indicated at the top of the files pane. 
+]
+
+---
+
+# 📥 Lab Submission: Canvas (Due 2/5 12p noon ET)
+1. Click the "Assignments" panel on the left side of the page. Scroll to find "Lab 1", and open the assignment. Click "Submit Assignment".
+
+2. Towards the bottom of the page, you'll be able to choose `lab02-report.html` from the folder you saved it in from RStudio Cloud or noted if you're using RStudio Desktop. **You will only be able to upload a .html file -- do not upload any other file type.**
+3. Click "Submit Assignment". You're done! 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
